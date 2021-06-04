@@ -3,8 +3,8 @@ import 'package:flutter_catlog/pages/home_page.dart';
 import 'package:flutter_catlog/pages/login_page.dart';
 import 'package:flutter_catlog/utils/routes.dart';
 import 'package:flutter_catlog/widgets/themes.dart';
-import 'package:google_fonts/google_fonts.dart';
 
+// study about constrain layout
 void main() {
   runApp(MyApp());
 }
