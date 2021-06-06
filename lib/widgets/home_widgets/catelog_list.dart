@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_catlog/models/catelog.dart';
 import 'package:flutter_catlog/pages/home_detail_page.dart';
-import 'package:flutter_catlog/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'catelog_image.dart';
 
@@ -12,7 +11,7 @@ class CatelogList extends StatelessWidget {
         shrinkWrap: true,
         itemCount: CatelogModel.items!.length,
         itemBuilder: (context, index) {
-          final catelog = CatelogModel.items![index];
+          final catelog = CatelogModel.getByPosition(index);
           return InkWell(
             onTap: () => Navigator.push(
               context,
@@ -51,7 +50,7 @@ class CatelogItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              catelog.name.text.lg.color(MyTheme.darkBluishColor).bold.make(),
+              catelog.name.text.lg.color(context.accentColor).bold.make(),
               catelog.desc.text.textStyle(context.captionStyle!).make(),
               10.heightBox,
               ButtonBar(
@@ -62,8 +61,8 @@ class CatelogItem extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {},
                     style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(MyTheme.darkBluishColor),
+                        backgroundColor: MaterialStateProperty.all(
+                            context.theme.buttonColor),
                         shape: MaterialStateProperty.all(StadiumBorder())),
                     child: "Add to Cart".text.make(),
                   ),
@@ -73,6 +72,6 @@ class CatelogItem extends StatelessWidget {
           ),
         ),
       ],
-    )).white.rounded.square(150).make().py16();
+    )).color(context.cardColor).rounded.square(150).make().py16();
   }
 }
