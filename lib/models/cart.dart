@@ -1,6 +1,12 @@
 import 'package:flutter_catlog/models/catelog.dart';
 
 class CartModel {
+  static final cartModel = CartModel._internal();
+
+  CartModel._internal();
+
+  factory CartModel() => cartModel;
+
   late CatelogModel _catelog;
 
   final List<int> _itemIds = [];
@@ -8,6 +14,7 @@ class CartModel {
   CatelogModel get catelog => _catelog;
 
   set catelog(CatelogModel newcatelog) {
+    // ignore: unnecessary_null_comparison
     assert(newcatelog != null);
     _catelog = newcatelog;
   }
