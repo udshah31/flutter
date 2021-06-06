@@ -41,13 +41,11 @@ class CatelogItem extends StatelessWidget {
         child: Row(
       children: [
         Hero(
-          tag: Key(
-            catelog.id.toString()
-          ),
+          tag: Key(catelog.id.toString()),
           child: CatelogImage(
             image: catelog.image,
-            ),
           ),
+        ),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,7 +65,7 @@ class CatelogItem extends StatelessWidget {
                         backgroundColor:
                             MaterialStateProperty.all(MyTheme.darkBluishColor),
                         shape: MaterialStateProperty.all(StadiumBorder())),
-                    child: "Buy".text.make(),
+                    child: "Add to Cart".text.make(),
                   ),
                 ],
               ).pOnly(right: 8.0),
