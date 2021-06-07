@@ -1,4 +1,6 @@
+import 'package:flutter_catlog/core/store.dart';
 import 'package:flutter_catlog/models/catelog.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class CartModel {
   late CatelogModel _catelog;
@@ -28,5 +30,17 @@ class CartModel {
   //remove item
   void remove(Item item) {
     _itemIds.remove(item.id);
+  }
+}
+
+class AddMutation extends VxMutation<MyStore> {
+  late final Item item;
+
+  AddMutation(this.item);
+
+  @override
+  perform() {
+    store!.cart._itemIds.add(item.id);
+    throw UnimplementedError();
   }
 }

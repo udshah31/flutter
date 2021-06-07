@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_catlog/core/store.dart';
 import 'package:flutter_catlog/models/cart.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -22,13 +23,13 @@ class CartPage extends StatelessWidget {
 class CartTotal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final cart = CartModel();
+     final CartModel _cart = (VxState.store as MyStore).cart;
     return SizedBox(
       height: 200,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          "\$${cart.totalPrice}"
+          "\$${_cart.totalPrice}"
               .text
               .xl5
               .color(context.theme.accentColor)
@@ -52,22 +53,23 @@ class CartTotal extends StatelessWidget {
 }
 
 class CartList extends StatelessWidget {
-  final cart = CartModel();
+  
 
   @override
   Widget build(BuildContext context) {
-    return cart.items.isEmpty
+     final CartModel _cart = (VxState.store as MyStore).cart;
+    return _cart.items.isEmpty
         ? "Nothing to show".text.xl3.makeCentered()
         : ListView.builder(
-            itemCount: cart.items.length,
+            itemCount: _cart.items.length,
             itemBuilder: (context, index) => ListTile(
               leading: Icon(Icons.done),
               trailing: IconButton(
                   onPressed: () {
-                    cart.remove(cart.items[index]);
+                    _cart.remove(_cart.items[index]);
                   },
                   icon: Icon(Icons.remove_circle_outline)),
-              title: cart.items[index].name.text.make(),
+              title: _cart.items[index].name.text.make(),
             ),
           );
   }
